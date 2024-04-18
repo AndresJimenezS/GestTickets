@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="head">
+        <title>TIcket</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+                </head >
+
+                <body>
+
+                    <header th:fragment="header">
+                        <nav class="navbar navbar-inverse">
+                            <div class="container-fluid">
+                                <div class="navbar-header">
+                                    <a class="navbar-brand" href="#">TIcket</a>
+                                </div>
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="/">Inicio</a></li>
+                                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Solicitudes <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a th:href="@{/ticket/nuevo}">Crear Solicitud</a></li>
+
+                                            <li><a th:href="@{/ticket/listado}">Histórico</a></li>
+                                        </ul>
+                                    </li>
+                                    <!--li><a href="#">Page 2</a></li-->
+                                    <li class="active"><a href="Usuarios.html">Usuarios</a></li>
+                                    <li class="active"><a th:href="@{/provincia/listado}">Provincias</a></li>
+                                    <li class="active"><a th:href="@{/canton/listado}">Cantones</a></li>
+                                    <li class="active"><a th:href="@{/distrito/listado}">Distritos</a></li>
+                                    <li class="active"><a href="AcercadeNosotros.html">Acerca de Nosotros</a></li>
+                                    <li class="active"><a href="Usuarios.html">Terminos y Condiciones</a></li>
+                                    <
+
+                                </ul>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
+                                    <li><a th:href="@{/}"><span class="glyphicon glyphicon-log-in"></span> Cerrar sessión</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+
+                    </header>
+
+                    <section>
+                        <h1> Terminos y Condiciones</h1>
+
+                        <p> Por favor, lea atentamente los siguientes términos y condiciones antes de utilizar nuestros productos y servicios en TIcket. Al acceder y utilizar nuestros servicios, usted acepta cumplir con estos términos y condiciones en su totalidad. Si no está de acuerdo con alguno de los términos, le recomendamos que no utilice nuestros productos y servicios. </p>
+
+                        <ol>
+
+                            <li>Uso de nuestros productos y servicios:</li>
+                            <ul>
+                                <li>a. Nuestros productos y servicios están destinados únicamente para uso legítimo y no pueden ser utilizados con fines ilegales o no autorizados.</li>
+                                <li>b. Usted es responsable de mantener la confidencialidad de cualquier cuenta o credencial proporcionada para acceder a nuestros servicios y se compromete a notificarnos de inmediato cualquier uso no autorizado de su cuenta.</li>
+                            </ul>
+                            <li>Modificaciones:</li>
+                            <ul>
+                                <li>a. Todos los derechos de propiedad intelectual, incluyendo pero no limitándose a derechos de autor, marcas comerciales y patentes, relacionados con nuestros productos y servicios, son propiedad exclusiva de TIcket.</li>
+                                <li>b. Queda prohibida la reproducción, distribución, modificación o cualquier otro uso no autorizado de nuestros materiales protegidos por derechos de autor sin nuestro consentimiento previo por escrito.</li>
+                            </ul>
+                            <li>Responsabilidad:</li>
+                            <ul>
+                                <li>a. Nuestros productos y servicios se proporcionan "tal cual" y no ofrecemos garantías de ningún tipo, ya sean explícitas o implícitas, incluyendo, pero no limitándose a, garantías de comerciabilidad o idoneidad para un propósito particular.</li>
+                                <li>b. No seremos responsables por ningún daño directo, indirecto, incidental, especial o consecuente que surja del uso o la incapacidad de utilizar nuestros productos y servicios</li>
+
+
+                            </ul>
+                            <li>Enlaces externos:</li>
+                            <ul>
+                                <li>a. Nuestros productos y servicios pueden contener enlaces a sitios web de terceros. No tenemos control sobre el contenido o las políticas de privacidad de dichos sitios y no asumimos responsabilidad alguna por ellos.</li>
+
+
+                            </ul>
+                            <li>Uso adecuado:</li>
+                            <ul>
+                                <li>a. Usted acepta utilizar nuestros productos y servicios de manera adecuada y respetuosa, sin participar en conductas que puedan afectar negativamente a otros usuarios o a nuestra empresa.</li>
+
+
+                            </ul>
+                            <li>Ley aplicable:</li>
+                            <ul>
+                                <li> a. Estos términos y condiciones se regirán e interpretarán de acuerdo con las leyes vigentes de [Jurisdicción], sin tener en cuenta conflictos de principios legales.</li>
+                            </ul>
+                            <br>
+                            <p>Al utilizar nuestros productos y servicios, usted reconoce que ha leído, comprendido y aceptado estos términos y condiciones en su totalidad. Si tiene alguna pregunta o inquietud sobre estos términos, por favor contáctenos a través de los canales de comunicación proporcionados en nuestro sitio web. </p>
+
+                        </ol>
+                </body>
+                </html>

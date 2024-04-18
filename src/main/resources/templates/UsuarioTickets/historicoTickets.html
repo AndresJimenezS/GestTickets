@@ -1,0 +1,42 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="layout/main :: head">
+    </head>
+    <header th:replace="layout/main :: header">
+
+    </header>
+    <body>
+
+        <div class="container">
+            <h1>[[#{solicitud.titulo.historico}]]</h1>
+            <section th:replace="~{UsuarioTickets/fragmentos :: filtrosHistorico}"/>            
+            <section th:replace="~{UsuarioTickets/fragmentos :: listadoHistorico}"/>
+            <section id="exportar">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h4>[[#{reporte.exportar}]]</h4>
+                    <div class="card-body">
+                        <a th:href="@{/reportes/historicoTickets?tipo=vPdf}" class="btn btn-primary">
+                            <i class='fas fa-eye'></i><i class='fas fa-file-pdf'></i>[[#{reporte.pdf}]]
+                        </a>
+                        <a th:href="@{/reportes/historicoTickets?tipo=Pdf}" class="btn btn-success">
+                            <i class='fas fa-download'></i><i class='fas fa-file-pdf'></i>[[#{reporte.pdf}]]
+                        </a>
+                        <a th:href="@{/reportes/historicoTickets?tipo=Xls}" class="btn btn-warning">
+                            <i class='fas fa-download'></i><i class='fas fa-file-excel'></i>[[#{reporte.xls}]]
+                        </a>
+                        <a th:href="@{/reportes/historicoTicketstipo=Csv}" class="btn btn-danger">
+                            <i class='fas fa-download'></i><i class='fas fa-file-csv'></i>[[#{reporte.csv}]]
+                        </a>
+                    </div>
+                </div> 
+            </section>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

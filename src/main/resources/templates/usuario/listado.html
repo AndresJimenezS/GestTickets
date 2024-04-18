@@ -1,0 +1,12 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="layout/main :: head">
+    </head>
+    <header th:replace="layout/main :: header">
+
+    </header>
+    <body>
+        <section th:replace="~{usuario/fragmentos :: listado}"/>
+    </body>
+</html>

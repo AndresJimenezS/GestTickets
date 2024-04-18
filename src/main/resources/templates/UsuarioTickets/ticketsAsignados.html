@@ -1,0 +1,57 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="layout/main :: head">
+    </head>
+    <header th:replace="layout/main :: header">
+
+    </header>
+    <body>
+
+        <div class="container">
+            <h1>[[#{solicitud.asignados}]]</h1>
+            <section>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <!--                        <form method="POST" th:action="@{/ticket/query4}>
+                                                      <div class="col">
+                                                    <div class="form-outline">
+                                                        <label class="form-label " for="form6Example1">Id de empleado</label>
+                                                        <input type="text" id="form6Example1" class="form-control" disabled="true" value="ldiego"/>
+                                                    </div>
+                                                </form>-->
+                        <form method="POST" th:action="@{/ticket/query4}"                               
+                              class="was-validated">
+                            <div class="card">                            
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="idEmpleado">[[#{solicitud.id.tecnico}]]</label>
+                                        <input type="text" class="form-control" 
+                                               th:value="${#authentication.getName()}"
+                                               th:name="tecnico" 
+                                               disabled='true'
+                                               />
+                                         <!--el value se debe obtener del usuario en la sesión, este lo añadí para asegurarme que el form y filtro funciona correctamente-->
+                                    </div>                                    
+                                </div>
+<!--                                <div class="card-footer text-center">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-check"></i> Filtrar
+                                    </button>
+                                </div>-->
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+        </div>
+        </section>
+        <section th:replace="~{UsuarioTickets/fragmentos :: listadoAsignados}"/>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

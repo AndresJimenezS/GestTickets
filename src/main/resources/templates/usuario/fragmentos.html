@@ -1,0 +1,317 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Fragementos usuario</title>
+    </head>
+    <body>    
+        <!--1 Listado usuarios-->
+        <section id="tabla" th:fragment="listado">
+            <div class="container">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <!-- 2 column grid layout with text inputs for the first and last names -->
+                        <section  id="Usuarios">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-11 mb-2">
+                                        <div class="card">
+                                            <div th:if="${usuarios != null and !usuarios.empty}">
+                                                <table class="table table-striped table-hover">
+                                                    <thead class="table-dark">
+                                                        <tr><th>[[#{usuario.id}]]</th>
+                                                            <th>[[#{registro.cedula}]]</th>
+                                                            <th>[[#{registro.nombre}]]</th>
+                                                            <th></th></tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr th:each="usuario : ${usuarios}">
+                                                            <td>[[${usuario.idUsuario}]]</td>
+                                                            <td>[[${usuario.cedula}]]</td>
+                                                            <td>[[${usuario.nombreCompleto}]]</td>
+                                                            <td><a th:href="@{/usuario/eliminarUsuarioSP/}+${usuario.idUsuario}"
+                                                                   class="btn btn-danger">
+                                                                    <i class="fas fa-trash"></i>[[#{accion.eliminar}]]</a></td>
+                                                            <!--                                                            <td> <a th:href="@{/usuario/modificar/}+${usuario.idUsuario}"
+                                                                                                                                class="btn btn-success">
+                                                                                                                                <i class="fas fa-pencil"></i>[[#{accion.actualizar}]]</a></td>-->
+                                                            <td> <a th:href="@{/usuario/modificar/estado-rol/}+${usuario.idUsuario}"
+                                                                    class="btn btn-success">
+                                                                    <i class="fas fa-pencil"></i>[[#{accion.actualizar.estado.rol}]]</a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="text-center p-2" th:if="${usuarios == null or usuarios.empty}">
+                                                <span>[[#{lista.vacia}]]</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Listado personal-->
+        <section id="tabla" th:fragment="listadoPersonal">
+            <div class="container">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <!-- 2 column grid layout with text inputs for the first and last names -->
+                        <section  id="Usuarios">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-11 mb-2">
+                                        <div class="card">
+                                            <div th:if="${usuarios != null and !usuarios.empty}">
+                                                <table class="table table-striped table-hover">
+                                                    <thead class="table-dark">
+                                                        <tr><th>[[#{usuario.id}]]</th>
+                                                            <th>[[#{registro.cedula}]]</th>
+                                                            <th>[[#{registro.nombre}]]</th>
+                                                            <th></th></tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr th:each="usuario : ${usuarios}" th:if="${usuario.username} == ${#authentication.getName()}">
+                                                            <td>[[${usuario.idUsuario}]]</td>
+                                                            <td>[[${usuario.cedula}]]</td>
+                                                            <td>[[${usuario.nombreCompleto}]]</td>
+                                                            <td> <a th:href="@{/usuario/modificar/}+${usuario.idUsuario}"
+                                                                    class="btn btn-success">
+                                                                    <i class="fas fa-pencil"></i>[[#{accion.actualizar}]]</a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="text-center p-2" th:if="${usuarios == null or usuarios.empty}">
+                                                <span>[[#{lista.vacia}]]</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--2 modificar usuario-->
+        <section th:fragment="editarUsuario">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <form method="POST"
+                          th:action="@{/usuario/editarUsuarioSP}" th:object="${usuario}"
+                          class="was-validated"
+                          enctype="multipart/form-data">
+                        <input type="hidden" name="idUsuario" th:field="*{idUsuario}"/>
+                        <input type="hidden" name="username" th:field="*{username}"/>
+                        <input type="hidden" name="contrasena" th:field="*{contrasena}"/>
+                        <input type="hidden" name="fechaRegistro" th:field="*{fechaRegistro}"/>
+                        <input type="hidden" name="rol" th:field="*{rol}"/>
+                        <input type="hidden" name="estadoUsuario" th:field="*{estadoUsuario}"/>
+                        <input type="hidden" name="nombreCompleto" th:field="*{nombreCompleto}"/>
+                        <input type="hidden" name="cedula" th:field="*{cedula}"/>
+                        <input type="hidden" name="email" th:field="*{email}"/>
+                        <section th:replace="~{usuario/fragmentos :: botonesEditar}"/>
+                        <div id=details>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4>[[#{usuario.actualizar}]]</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <!--                                                <div class="mb-3">
+                                                                                                    <label for="idUsuario">Id usuario</label>
+                                                                                                    <input type="text" class="form-control" 
+                                                                                                           th:field="*{idUsuario}"
+                                                                                                           readonly
+                                                                                                           disabled="true">
+                                                                                                </div>
+                                                                                                <div class="mb-3">
+                                                                                                    <label for="username">username</label>
+                                                                                                    <input type="text" class="form-control" 
+                                                                                                           th:field="*{username}"
+                                                                                                           readonly
+                                                                                                           disabled="true">
+                                                                                                </div>-->
+                                                <div class="mb-3">
+                                                    <label for="nombre">[[#{registro.nombre}]]</label>
+                                                    <input type="text" class="form-control" 
+                                                           th:field="*{nombreCompleto}"
+                                                           disabled="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="cedula">[[#{registro.cedula}]]</label>
+                                                    <input type="number" class="form-control" 
+                                                           th:field="*{cedula}"
+                                                           disabled="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="email">[[#{registro.email}]]</label>
+                                                    <input type="email" class="form-control" 
+                                                           th:field="*{email}"
+                                                           disabled="true"/>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="telefono">[[#{registro.telefono}]]</label>
+                                                    <input type="tel" class="form-control" 
+                                                           th:field="*{telefono}"
+                                                           required="true"/>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="sexo">[[#{registro.sexo}]]</label>
+                                                    <select name="sexo" class="form-control">
+                                                        <option value="Masculino">[[#{registro.sexo.masculino}]]</option>
+                                                        <option value="Femenino">[[#{registro.sexo.femenino}]]</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="pais">[[#{registro.pais}]]</label>
+                                                    <select name="pais" class="form-control">
+                                                        <option value="Costa Rica">[[#{registro.pais.costarica}]]</option>
+                                                        <option value="Panamá">[[#{registro.pais.panama}]]</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="provincia">[[#{registro.provincia}]]</label>
+                                                    <select th:field="*{provincia.provincia}"
+                                                            class="form-select" 
+                                                            aria-label="Default select example">
+                                                        <option th:each="c : ${provincias}" th:value="${c.provincia}" th:text="${c.nombreProvincia}">
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="canton">[[#{registro.canton}]]</label>
+                                                    <select th:field="*{canton.canton}"
+                                                            class="form-select" 
+                                                            aria-label="Default select example">
+                                                        <option th:each="c : ${cantones}" th:value="${c.canton}" th:text="${c.nombreCanton}">
+                                                            <!--<option th:each="c : ${cantones}" th:value="${c.canton}" th:text="${c.nombreCanton}" th:if="${c.provincia} == 6">-->
+                                                            <!--<option th:each="c : ${cantones}" th:value="${c.canton}" th:text="${c.nombreCanton}">-->
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="distrito">[[#{registro.distrito}]]</label>
+                                                    <select th:field="*{distrito.distrito}"
+                                                            class="form-select" 
+                                                            aria-label="Default select example">
+                                                        <option th:each="c : ${distritos}" th:value="${c.distrito}" th:text="${c.nombreDistrito}">
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="otrasSenas">[[#{registro.otrassenas}]]</label>
+                                                    <textarea rows=4
+                                                              class="form-control" 
+                                                              th:field="*{otrasSenas}"                                                               
+                                                              required="true"></textarea>
+                                                </div>                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!--Administrativo:modificar estado/rol-->
+        <section th:fragment="editarRolEstado">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <form method="POST"
+                          th:action="@{/usuario/editarRolesSP}" th:object="${usuario}"
+                          class="was-validated"
+                          enctype="multipart/form-data">
+                        <input type="hidden" name="idUsuario" th:field="*{idUsuario}"/>
+                        <input type="hidden" name="username" th:field="*{username}"/>
+                        <input type="hidden" name="contrasena" th:field="*{contrasena}"/>
+                        <input type="hidden" name="nombreCompleto" th:field="*{nombreCompleto}"/>
+                        <input type="hidden" name="cedula" th:field="*{cedula}"/>
+                        <input type="hidden" name="email" th:field="*{email}"/>
+                        <input type="hidden" name="telefono" th:field="*{telefono}"/>
+                        <input type="hidden" name="sexo" th:field="*{sexo}"/>
+                        <input type="hidden" name="pais" th:field="*{pais}"/>
+                        <input type="hidden" name="provincia" th:field="*{provincia.provincia}"/>
+                        <input type="hidden" name="canton" th:field="*{canton.canton}"/>
+                        <input type="hidden" name="distrito" th:field="*{distrito.distrito}"/>
+                        <input type="hidden" name="otrasSenas" th:field="*{otrasSenas}"/>
+                        <input type="hidden" name="fechaRegistro" th:field="*{fechaRegistro}"/>
+                        <section th:replace="~{usuario/fragmentos :: botonesEditar}"/>
+                        <div id=details>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4>[[#{usuario.actualizar}]]</h4>
+                                            </div>
+                                            <div class="card-body">
+
+                                                <div class="mb-3">
+                                                    <label for="nombre">[[#{registro.nombre}]]</label>
+                                                    <input type="text" class="form-control" 
+                                                           th:field="*{username}"
+                                                           disabled="true">
+                                                </div>                                                
+                                                <div class="mb-3">
+                                                    <label for="rol">[[#{registro.rol}]]</label>
+                                                    <select th:field="*{rol.rol}"
+                                                            class="form-select" 
+                                                            aria-label="Default select example">
+                                                        <option th:each="c : ${roles}" th:value="${c.rol}" th:text="${c.descripcion}">
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="estadoUsuario">[[#{registro.estado.usuario}]]</label>
+                                                    <select th:field="*{estadoUsuario.estadoUsuario}"
+                                                            class="form-select" 
+                                                            aria-label="Default select example">
+                                                        <option th:each="c : ${estadoUsuarios}" th:value="${c.estadoUsuario}" th:text="${c.descripcion}">
+                                                        </option>
+                                                    </select>
+                                                </div>                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
+        <section th:fragment="botonesEditar">
+            <div class="container py-4 mb-4 bg-light">
+                <div class="row">
+                    <div class="col-md-4 d-grid">
+                        <a onclick="history.go(-1)" class="btn btn-primary">
+                            <i class="fas fa-arrow-left"></i>[[#{accion.regresar}]]
+                        </a>
+                    </div>
+                    <div class="col-md-4 d-grid" >                                
+                        <a th:href="@{/usuario/eliminarUsuarioSP/}+${usuario.idUsuario}"
+                           class="btn btn-danger" sec:authorize="hasRole('ROLE_ADMINISTRATIVO')">
+                            <i class="fas fa-trash"></i>[[#{accion.eliminar}]]
+                        </a>
+                    </div>
+                    <div class="col-md-4 d-grid">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-check"></i>[[#{accion.guardar}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </body>
+</html>

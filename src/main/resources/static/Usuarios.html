@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="head">
+        <title>TIcket</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="css/skin.css" rel="stylesheet" type="text/css"/>
+    <head>
+        <meta charset="UTF-8">
+        <title>Gestión de Usuarios</title>
+    </head>
+  </head >
+   
+    <body>
+         <header th:fragment="header">
+        <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">TIcket</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Inicio</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Solicitudes <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a th:href="@{/ticket/nuevo}">Crear Solicitud</a></li>
+         
+          <li><a th:href="@{/ticket/listado}">Histórico</a></li>
+        </ul>
+      </li>
+      <!--li><a href="#">Page 2</a></li-->
+       <li class="active"><a th:href="@{/provincia/listado}">Provincias</a></li>
+       <li class="active"><a th:href="@{/canton/listado}">Cantones</a></li>
+       <li class="active"><a th:href="@{/distrito/listado}">Distritos</a></li>
+       <li class="active"><a href=AcercadeNosotros.html>Acerca de Nosotros</a></li>
+       <li class="active"><a href="Usuarios.html">Usuarios</a></li>
+  
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
+      <li><a th:href="@{/}"><span class="glyphicon glyphicon-log-in"></span> Cerrar sessión</a></li>
+    </ul>
+  </div>
+</nav>
+  
+    </header>
+        
+        <h1>Gestión de Usuarios</h1>
+
+        <h2>Crear Usuario</h2>
+        <form>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <br>
+            <label for="apellido">Apellidos:</label>
+            <input type="text" id="apellido" name="apellido" required>
+            <br>
+
+            <label for="cedula">Número de Cédula:</label>
+            <input type="text" id="cedula" name="cedula" required>
+            <br>
+            <label for="idEmpresa">ID de Empresa:</label>
+            <input type="text" id="idEmpresa" name="idEmpresa" required>
+            <br>
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" id="correo" name="correo" required>
+            <br>
+            <label for="Password">Password:</label>
+            <input type="password" id="Password:" name="Password:" required>
+            <br>
+                
+            <label for="roles">Roles:</label>
+            <select id="roles" name="roles">
+                <option value="Técnico">Usuario</option>
+                <option value="administrador">Administrador</option>
+            </select>
+            <br>
+            <button type="submit">Crear</button>
+        </form>
+
+        <h2>Eliminar Usuario</h2>
+        <form>
+            <label for="usuarioEliminar">Seleccione el usuario a eliminar:</label>
+            <select id="usuarioEliminar" name="usuarioEliminar">
+                <option value="usuario1">Usuario 1</option>
+                <option value="usuario2">Usuario 2</option>
+                <option value="usuario3">Usuario 3</option>
+            </select>
+            <br>
+            <button type="submit">Eliminar</button>
+        </form>
+
+        <h2>Actualizar Información de Usuario</h2>
+        <form>
+            <label for="usuarioActualizar">Seleccione el usuario a actualizar:</label>
+            <select id="usuarioActualizar" name="usuarioActualizar">
+                <option value="usuario1">Usuario 1</option>
+                <option value="usuario2">Usuario 2</option>
+                <option value="usuario3">Usuario 3</option>
+            </select>
+            <br>
+            <label for="nombreNuevo">Nuevo Nombre:</label>
+            <input type="text" id="nombreNuevo" name="nombreNuevo" placeholder=" Nombre"/>
+            <br>
+            <label for="apellidoNuevo">Nuevos Apellidos:</label>
+            <input type="text" id="apellidoNuevo" name="apellidoNuevo">
+            <br>
+            <label for="cedulaNueva">Nuevo Número de Cédula:</label>
+            <input type="text" id="cedulaNueva" name="cedulaNueva">
+            <br>
+            <label for="idEmpresaNuevo">Nuevo ID de Empresa:</label>
+            <input type="text" id="idEmpresaNuevo" name="idEmpresaNuevo">
+            <br>
+            <label for="correoNuevo">Nuevo Correo Electrónico:</label>
+            <input type="email" id="correoNuevo" name="correoNuevo">
+            <br>
+                 <label for="Password">Password:</label>
+            <input type="password" id="Password:" name="Password:" required>
+            <br>
+                
+            <label for="rolesNuevo">Nuevos Roles:</label>
+            <select id="rolesNuevo" name="rolesNuevo">
+                <option value="usuario">
+                <option value="usuario">Usuario</option>
+                <option value="administrador">Administrador</option>
+            </select>
+            <br>
+            <button type="submit">Actualizar</button>
+        </form>
+
+        <!-- Aquí puedes agregar el código adicional, como una tabla para mostrar la lista de usuarios existentes -->
+
+        <h2>Lista de Usuarios</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Número de Cédula</th>
+                    <th>ID de Empresa</th>
+                    <th>Correo Electrónico</th>
+                    <th>Roles</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Usuario 1</td>
+                    <td>Apellidos 1</td>
+                    <td>123456789</td>
+                    <td>Empresa 1</td>
+                    <td>usuario1@example.com</td>
+                    <td>Usuario</td>
+                </tr>
+                <!-- Puedes agregar más filas para mostrar los usuarios existentes -->
+            </tbody>
+        </table>
+    </body>
+</html>
+

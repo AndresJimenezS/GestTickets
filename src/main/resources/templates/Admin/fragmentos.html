@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Fragementos Admin</title>
+    </head>
+    <body>    
+        <!--1 Listado técnicos-->
+        <section id="tabla" th:fragment="listado">
+            <div class="container">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <!-- 2 column grid layout with text inputs for the first and last names -->
+                        <section  id="Tecnicos">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-11 mb-2">
+                                        <div class="card">
+                                            <div th:if="${usuarios != null and !usuarios.empty}">
+                                                <table class="table table-striped table-hover">
+                                                    <thead class="table-dark">
+                                                        <tr><th>Id de técnico</th>
+                                                            <th>Número de cédula</th>
+                                                            <th>Nombre completo</th>
+                                                            <th></th></tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr th:each="usuario : ${usuarios}" 
+                                                            <!--th:if="${usuario.rol} == 2"-->
+                                                            <td>[[${usuario.idUsuario}]]</td>
+                                                            <td>[[${usuario.cedula}]]</td>
+                                                            <td>[[${usuario.nombreCompleto}]]</td>
+                                                            <td><a th:href="@{/usuario/eliminarUsuario/}+${usuario.idUsuario}"
+                                                                   class="btn btn-danger">
+                                                                    <i class="fas fa-trash"></i>Eliminar</a></td>
+                                                            <td> <a th:href="@{/usuario/modificar/}+${usuario.usuario}"
+                                                                    class="btn btn-success">
+                                                                    <i class="fas fa-pencil"></i>Actualizar</a></td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="text-center p-2" th:if="${usuarios == null or usuarios.empty}">
+                                                <span>La lista se encuentra vacía</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

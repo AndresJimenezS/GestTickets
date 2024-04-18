@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{layout/main :: head}">
+        <title>iTicket</title>        
+    </head>
+    <body>
+        <header th:replace="~{layout/main :: header}"/>
+
+        <div class="container">
+            <h1>[[${titulo}]]</h1>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <strong>[[${mensaje}]]</strong><!--<form th:action="@{/usuario/guardar}" th:object="${usuario}"-->
+
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+</html>

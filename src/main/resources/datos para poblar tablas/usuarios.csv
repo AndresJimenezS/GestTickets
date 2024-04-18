@@ -1,0 +1,14 @@
+"id_usuario";"usuario";"contrasena";"nombre_completo";"cedula";"email";"telefono";"sexo";"pais";"provincia";"canton";"distrito";"otras_senas";"rol";"fecha_registro";"estado_usuario";"terminos_condiciones"
+2;"ldiego";"$2a$10$7rgEiKpERyGuEwfE70hkS.2P9ul74BK6eqLLQYwLAcFcIncnCrTf6";"Luis Duran";111;"ldieduran@gmail.com";898989;"Masculino";"Costa Rica";6;608;60801;"no indica2";3;"2023-07-22 08:42:00";1;0
+3;"ldiego2";"$2a$10$PRLBpVwbqkicV.qJTMEOmOr34cdSnwFoEuWToHx0G3/5RrlQsykeu";"Luis Duran";0;"ldduran97@gmail.com";888888;"Masculino";"Costa Rica";6;608;60801;"no indica";2;"2023-07-22 08:45:00";1;0
+4;"jpablo";"456";"Jose Duran";0;"aaaa@b.com";888888;"Masculino";"Costa Rica";6;608;60801;"no indica2";2;"2023-07-22 08:45:00";1;0
+5;"dmora";"456";"David Mora";0;"aaaa@b.com";888888;"H";"Costa Rica";1;101;10101;"no indica";1;"2023-07-22 08:45:35";1;1
+12;"gvargas";"456";"Grace Vargas";0;"aaaa@b.com";888888;"H";"Costa Rica";1;101;10101;"no indica";1;"2023-07-24 17:54:59";2;1
+19;"asfas";"123";"asfa";198189;"a@bc.com";4894;"Masculino";"Costa Rica";1;101;10101;"asfeas";1;"2023-08-15 17:34:55";1;1
+20;"prueba2";"8549";"prueba2";1122333;"aa@bb.com";259489;"Femenino";"Panamá";1;101;10101;"asdfas";1;"2023-08-15 17:37:29";1;1
+21;"prueba3";"$2a$10$PRLBpVwbqkicV.qJTMEOmOr34cdSnwFoEuWToHx0G3/5RrlQsykeu";"prueba3";19684946;"a2@b2.com";54984365;"Femenino";"Panamá";1;101;10101;"asfsfe";1;"2023-08-15 17:39:24";1;1
+22;"pruebaBD";"$2a$10$ih7SA3u4.dcLHGWTVsIut.KRoZYIRu28b33r43wKTfAxI7rTR7ayy";"pruebaBD";948916;"a3@b3.com";49849;"Femenino";"Costa Rica";1;101;10101;"11981afafe";1;"2023-08-15 17:43:04";1;1
+23;"prueba4";"$2a$10$cSZnTodxgvMEPrMl2t5YLuO4kom42Y7AmD71UNv2cMtzXwhi695EW";"prueba4";4894919;"aa3@bb4.com";4894984;"Masculino";"Costa Rica";1;101;10101;"fase 2";1;"2023-08-15 22:20:00";2;0
+30;"iTicket";"$2a$10$NgqPCGGJc6UA.O2Ce4eabuNOgBeGLDGUjjUvYlKCG0qm4qxVST26y";"iTicket";19189;"iticket.SC403@gmail.com";98498;"Masculino";"Costa Rica";1;101;10101;"a";2;"2023-08-16 13:03:00";1;0
+31;"lduran80813";"$2a$10$koIx4TLmkA57rBeXORfiiem.0P6tQxWiMgGuBnCwSeF3S2qD1bRx6";"Luis Duran";123456;"lduran80813@ufide.ac.cr";8888888;"Masculino";"Costa Rica";1;101;10101;"no indica";2;"2023-08-23 20:09:00";1;0
+32;"ldduran97";"$2a$10$2bnHGIHbPv532WzNnnXUH.yrvzfu5EzsJELb0VvbaCyEiuKTtlzVK";"Luis";4894891;"ldduran97@hotmail.com";181981;"Masculino";"Costa Rica";6;608;60801;"faesafafe";1;"2024-02-12 21:21:00";1;0

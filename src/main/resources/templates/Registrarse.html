@@ -1,0 +1,227 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+    <head th:replace="layout/main :: head">
+    </head>
+    <body>
+
+        <div class="container">
+            <h1>[[#{registro.titulo}]]</h1>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <!--<form th:action="@{/usuario/guardar}" th:object="${usuario}"-->
+                    <form th:action="@{/registro/insertarUsuarioSP}" th:object="${usuario}"
+                          method="POST" class="was-validated"
+                          enctype="multipart/form-data">
+                        <!-- 2 column grid layout with text inputs for the first and last names -->
+                        <input type="hidden" name="fecha_registro" />
+                        <input type="hidden" name="contrasena" value="123" />
+
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label " for="nombre">[[#{registro.nombre}]]</label>
+                                <input type="text" id="Usuario" class="form-control" name="nombre"required/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label " for="username">[[#{registro.username}]]</label>
+                                <input type="text" id="Usuario" class="form-control" name="username" required/>
+                            </div>
+                        </div>
+                        <!--                        <div class="col">
+                                                    <div class="form-outline">
+                                                        <label class="form-label " for="contrasena">[[#{registro.contrasena}]]</label>
+                                                        <input type="password" id="Usuario" class="form-control" name="contrasena"/>
+                                                    </div>
+                                                </div>-->
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="cedula">[[#{registro.cedula}]]</label>
+                                <input type="number" id="Cedula" class="form-control" name="cedula" required/>
+                            </div>
+                        </div>
+
+
+                        <!-- Text input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="email">[[#{registro.email}]]</label>
+                            <input type="email" id="Email" class="form-control" name="email" required/>
+
+                        </div>
+
+                        <!-- Text input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="telefono">[[#{registro.telefono}]]</label>
+                            <input type="tel" id="telefono" class="form-control" name="telefono" required/>
+
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="sexo">[[#{registro.sexo}]]</label>
+                            <select name="sexo" class="form-control">
+                                <option value="Masculino">[[#{registro.sexo.masculino}]]</option>
+                                <option value="Femenino" selected>[[#{registro.sexo.femenino}]]</option>
+                            </select>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form6Example5">[[#{registro.pais}]]</label>
+                            <select name="pais" class="form-control">
+                                <option value="Costa Rica" selected>[[#{registro.pais.costarica}]]</option>
+                                <option value="Panamá">[[#{registro.pais.panama}]]</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="provincia">[[#{registro.provincia}]]</label>
+                            <select th:field="*{provincia.provincia}"
+                                    class="form-select" 
+                                    aria-label="Default select example">
+                                <option th:each="c : ${provincias}" th:value="${c.provincia}" th:text="${c.nombreProvincia}" th:on>
+                                </option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="canton">[[#{registro.canton}]]</label>
+                            <select th:field="*{canton.canton}"
+                                    class="form-select" 
+                                    aria-label="Default select example">
+                                <option th:each="c : ${cantones}" th:value="${c.canton}" th:text="${c.nombreCanton}">
+                                    <!--<option th:each="c : ${cantones}" th:value="${c.canton}" th:text="${c.nombreCanton}" th:if="${c.provincia} == 6">-->
+                                    <!--<option th:each="c : ${cantones}" th:value="${c.canton}" th:text="${c.nombreCanton}">-->
+                                </option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="distrito">[[#{registro.distrito}]]</label>
+                            <select th:field="*{distrito.distrito}"
+                                    class="form-select" 
+                                    aria-label="Default select example">
+                                <option th:each="c : ${distritos}" th:value="${c.distrito}" th:text="${c.nombreDistrito}">
+                                </option>
+                            </select>
+                        </div>
+                        <!-- Message input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="otrasSenas">[[#{registro.otrassenas}]]</label>
+                            <textarea class="form-control" id="form6Example7" rows="4" name="otrasSenas" required></textarea>
+                        </div>
+                                                <div class="mb-3" style="display: none;">
+                                                    <label for="rol">Rol</label>
+                                                    <select th:field="*{rol.rol}"
+                                                            class="form-select" 
+                                                            aria-label="Default select example">
+                                                        <option th:each="c : ${roles}" th:value="${c.rol}" th:text="${c.descripcion}">
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                               <div class="mb-3" style="display: none;">
+                                                    <label for="estadoUsuario">Estado usuario</label>
+                                                    <select th:field="*{estadoUsuario.estadoUsuario}"
+                                                            class="form-select" 
+                                                            aria-label="Default select example">
+                                                        <option th:each="c : ${estadoUsuarios}" th:value="${c.estadoUsuario}" th:text="${c.descripcion}">
+                                                        </option>
+                                                    </select>
+                                                </div> 
+
+                        <!-- Number input -->
+                        <div class="form-outline mb-4">
+
+                            <input type="checkbox" id="form6Example6" name="terminosCondiciones" value= 1 required/>
+                            <a data-toggle="modal" data-target="#modal-1" >[[#{registro.tyc}]]</a>
+                        </div>
+
+
+
+                        <div class="form-outline mb-4">
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-primary btn-block mb-2">[[#{accion.guardar}]]</button>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <!-- Submit button -->
+                            <a th:href="@{/}" class="btn btn-secondary btn-block mb-2">[[#{accion.regresar}]]</a>
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+   
+    <div class="modal" id="modal-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">[[#{tyc.titulo}]]</h4>
+                    <button class="close" type="button" data-dismiss="modal">
+                        <i class="fa fa-close"></i>
+                    </button>
+
+                </div>
+                <div class="modal-body">
+                    <h1> [[#{tyc.titulo}]]</h1>
+
+                    <p> [[#{tyc.descripcion}]] </p>
+
+                    <ol>
+
+                        <li>[[#{tyc.tituloinfo}]]</li>
+                        <ul>
+                            <li>[[#{tyc.productosyserviciosA}]]</li>
+                            <li>[[#{tyc.productosyserviciosb}]]</li>
+                        </ul>
+                        <li>[[#{tyc.modificaciones}]]</li>
+                        <ul>
+                            <li>[[#{tyc.modificacionesa}]]</li>
+                            <li>[[#{tyc.modificacionesb}]]</li>
+                        </ul>
+                        <li>[[#{tyc.responsabilidad}]]</li>
+                        <ul>
+                            <li>[[#{tyc.responsabilidada}]]</li>
+                            <li>[[#{tyc.responsabilidadb}]]</li>
+
+
+                        </ul>
+                        <li>[[#{tyc.enlaces}]]</li>
+                        <ul>
+                            <li>[[#{tyc.enlacesa}]]</li>
+
+
+                        </ul>
+                        <li>[[#{tyc.uso}]]</li>
+                        <ul>
+                            <li>[[#{tyc.usoa}]]</li>
+
+
+                        </ul>
+                        <li>[[#{tyc.ley}]]</li>
+                        <ul>
+                            <li> [[#{tyc.leya}]]</li>
+                        </ul>
+                        <br>
+                            <p> [[#{tyc.leyb}]]</p>
+
+                    </ol>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" type="button" data-dismiss="modal">[[#{tyc.cerrar}]]</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    
+
+</html>
